@@ -161,4 +161,27 @@
             row.find(".open-time, .close-time").prop("disabled", false);
         }
     });
+
+    // Fetches categories from and Set
+    let selectedCategoryId = $("#categoryDropdown").data("selected-id");
+    $.ajax({
+        url: "/api/categories-list",
+        method: "GET",
+        dataType: "json",
+        success: function(response) {
+            if (response.status) {
+                let dropdown = $("#categoryDropdown");
+                dropdown.empty();
+                dropdown.append('<option value="">Select Category</option>'); 
+
+                $.each(response.data, function(index, category) {
+                    let isSelected = (category.id == selectedCategoryId) ? "selected" : "";
+                    dropdown.append(`<option value="${category.id}" ${isSelected}>${category.name}</option>`);
+                });
+            }
+        },
+        error: function(error) {
+            console.error("Error fetching categories:", error);
+        }
+    });
   });

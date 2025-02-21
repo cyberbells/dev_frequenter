@@ -653,6 +653,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="pages/kanban.html" class="nav-link">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <p>
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                  @csrf
+                  <button type="submit" class="btn btn-danger">Sign Out</button>
+                </form>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

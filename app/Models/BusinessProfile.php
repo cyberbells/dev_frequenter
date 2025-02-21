@@ -26,7 +26,7 @@ class BusinessProfile extends Model
         'conversion_rate',
         'total_checkins',
         'total_rewards_redeemed',
-        'category',
+        'category_id',
         'description',
         'website',
     ];
@@ -43,5 +43,10 @@ class BusinessProfile extends Model
     public function customers()
     {
         return $this->hasManyThrough(Customer::class, Transaction::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

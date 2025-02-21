@@ -1,19 +1,8 @@
 @extends('admin.layouts.master')
-
 @section('title', 'Business Edit')
-
 @section('content')
-<style>
-  /* upload images css */
-img.preview-image{
-    object-fit: cover;
-}
-.cursor-pointer{
-cursor: pointer;
-}
-</style>
 
- <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -118,15 +107,9 @@ cursor: pointer;
 
                         <div class="col-md-4 form-group">
                           <label for="category" class="form-label">Category</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="category"
-                            name="category"
-                            value="{{ $business->businessProfile->industry_type }}"
-                            required
-                          />
-                          <div class="valid-feedback">Looks good!</div>
+                          <select id="categoryDropdown" name="category_id" class="form-control" data-selected-id="{{ $business->businessProfile->category_id ?? '' }}">
+                            <option value="">Loading categories...</option>
+                          </select>
                         </div>
 
                         <div class="col-md-4 form-group">

@@ -42,6 +42,7 @@ class AdminController extends Controller
     // Update a Admin
     public function update(Request $request)
     {
+        // echo"<pre>"; print_r($request->all()); die;
         $admin = Auth::user();
         // Validate request data
         $request->validate([
@@ -49,14 +50,11 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email,' . $admin->id,
             'phone' => 'nullable|string|max:15|unique:users,phone,' . $admin->id,
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'password' => 'nullable|min:6|confirmed',
+            // 'password' => 'nullable|min:6|confirmed',
         ]);
 
         // Handle profile image upload
         if ($request->hasFile('profile_image')) {
-            // if ($admin->profile_image) {
-            //     Storage::delete($admin->profile_image); // Delete old image
-            // }
             $imagePath = $request->file('profile_image')->store('profile_images', 'public');
             $admin->profile_image = 'storage/' . $imagePath;
         }
@@ -67,9 +65,9 @@ class AdminController extends Controller
         $admin->phone = $request->phone;
 
         // Update password only if provided
-        if ($request->filled('password')) {
-            $admin->password = Hash::make($request->password);
-        }
+        // if ($request->filled('password')) {
+        //     $admin->password = Hash::make($request->password);
+        // }
 
         $admin->save(); // Save updated admin data
 
@@ -89,7 +87,7 @@ class AdminController extends Controller
         // // Update user details
         // $user->update($validated);
 
-        return redirect()->route('admin.dashboard')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.profile.edit')->with('success', 'Information updated successfully.');
     }
 
     // Delete a User
@@ -120,5 +118,28 @@ class AdminController extends Controller
         $businessList = DB::table('business_profiles')->get();
 
         return view('admin.businesspoints', compact('businessList'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'current_password' => ['required'],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $admin = Auth::user();
+
+        // Check if current password is correct
+        if (!Hash::check($request->current_password, $admin->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        // Update password
+        $admin->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return back()->with('success', 'Password updated successfully.');
     }
 }

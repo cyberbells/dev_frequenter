@@ -1,0 +1,10 @@
+/* upload images css */
+img.preview-image{
+  object-fit: cover;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.profileHgt{
+  height: 100px;
+}

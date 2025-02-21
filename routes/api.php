@@ -15,6 +15,7 @@ use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CategoryController;
 
 // Public Routes
 Route::middleware(['api', EnsureFrontendRequestsAreStateful::class])->group(function () {
@@ -35,6 +36,9 @@ Route::middleware(['api', EnsureFrontendRequestsAreStateful::class])->group(func
 
     // Get cities by state or country (Optional for dependent dropdowns)
     Route::get('/cities/filter', [CityController::class, 'getCitiesByStateOrCountry']);
+
+    // API Lists of Categories
+    Route::get('/categories-list', [CategoryController::class, 'getCategories']);
 });
 // Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 

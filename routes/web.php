@@ -84,6 +84,7 @@ Route::prefix('admin')->middleware(['auth', RoleMiddleware::class . ':admin'])->
 
     Route::get('/profile', [AdminController::class, 'edit'])->name('admin.profile.edit');
     Route::post('/profile', [AdminController::class, 'update'])->name('admin.profile.update');
+    Route::put('/password/update', [AdminController::class, 'updatePassword'])->name('admin.password.update');
 
     // Dashboard
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

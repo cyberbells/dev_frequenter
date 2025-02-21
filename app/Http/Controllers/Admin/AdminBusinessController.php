@@ -60,7 +60,7 @@ class AdminBusinessController extends Controller
         BusinessProfile::create([
             'business_id' => $user->id,
             'business_name' => $request->name,
-            'industry_type' => $request->category,
+            'category_id' => $request->category_id,
             'description' => $request->description,
             'website' => $request->website,
         ]);
@@ -145,6 +145,7 @@ class AdminBusinessController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->mobile,
+            'status' => $request->status,
         ]);
 
         Log::info('Business updated with ID:', ['user_id' => $user->id]);
@@ -154,7 +155,7 @@ class AdminBusinessController extends Controller
             ['business_id' => $user->id], // Search condition
             [
                 'business_name' => $request->name,
-                'industry_type' => $request->category,
+                'category_id' => $request->category_id,
                 'description' => $request->description,
                 'website' => $request->website,
             ]

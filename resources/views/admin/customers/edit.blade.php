@@ -1,13 +1,8 @@
 @extends('admin.layouts.master')
 @section('title', 'Customer Create')
 @section('content')
-<style>
-  .profileHgt{
-    height: 100px;
-  }
-  </style>
 
- <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
