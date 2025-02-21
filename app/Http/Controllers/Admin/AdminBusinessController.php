@@ -138,7 +138,7 @@ class AdminBusinessController extends Controller
         ]);
 
         // Find existing user
-        $user = User::findOrFail($id); 
+        $user = User::findOrFail($id);
 
         // Update user details
         $user->update([
