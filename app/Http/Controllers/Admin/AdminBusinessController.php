@@ -141,7 +141,7 @@ class AdminBusinessController extends Controller
         $user = User::findOrFail($id);
 
         // Update user details
-        $user->update([
+        $user->update([ 
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->mobile,
