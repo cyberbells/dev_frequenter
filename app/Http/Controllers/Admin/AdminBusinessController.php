@@ -158,7 +158,7 @@ class AdminBusinessController extends Controller
                 'category_id' => $request->category_id,
                 'description' => $request->description,
                 'website' => $request->website,
-            ]
+            ] 
         );
 
         // Update or create BusinessAddress
