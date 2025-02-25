@@ -1,0 +1,6 @@
+img.preview-image{
+    object-fit: cover;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
