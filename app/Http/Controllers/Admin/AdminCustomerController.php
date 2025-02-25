@@ -116,7 +116,7 @@ class AdminCustomerController extends Controller
     */
     public function update(Request $request, User $customer)
     {
-        // echo"<pre>"; print_r($request->all()); die;
+        // echo"<pre>"; print_r($request->all()); die; 
         try {
             // Validations
             $request->validate([
